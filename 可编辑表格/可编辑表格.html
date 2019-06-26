@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>可编辑表格</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+    <style>
+        .box{
+            width:700px;
+            height:auto;
+            margin:30px auto;
+            text-align:center;
+            color:black;
+        }   
+    </style>
+    <div class="box">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="info">
+                    <td>姓名</td>
+                    <td>性别</td>
+                    <td>年龄</td>
+                    <td>工作</td>
+                    <td>爱好</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr class="active">
+                    <td>啦啦</td>
+                    <td>女</td>
+                    <td>12</td>
+                    <td>学生</td>
+                    <td>旅游</td>
+                    <td><button type="button" class="btn btn-danger btn-primary btn-xs">删除</button></td>
+                </tr> -->
+            </tbody>
+        </table>
+        <script src="jquery-3.4.1.min.js"></script>
+        <script>
+         /*
+            1. 通过JS模拟数据保存在localStorage中，通过各种方式去操作这个数据进行可编辑表格
+            2. 查：通过localStorage.getItem()
+            3. 删：点击删除按钮删除对应的一行。所有每一行都需要有一个独特的标记，根据这个标记与数据进行比对，比对成功删除数据中对应的部分
+            4. 改：点击对应要修改的的内容确定是修改的哪一行，再与数据进行对比，去修改对应的行
+            5. 增： 点击添加按钮在页面中插入新的一行，然后再添加完数据之后再进行保存到本地
+        */
+
+        
+            $(function(){
+                // 模拟数据，数据一般保存在数组中，以便循环遍历
+                let data=[{
+                    name:"小红",
+                    sex:"女",
+                    age:18,
+                    work:"学生",
+                    hobby:"旅游"
+                },
+                {
+                    name:"小明",
+                    sex:"男",
+                    age:14,
+                    work:"学生",
+                    hobby:"看书"
+                },
+                {
+                    name:"小亮",
+                    sex:"男",
+                    age:18,
+                    work:"学生",
+                    hobby:"打篮球"
+                },
+                {
+                    name:"小张",
+                    sex:"男",
+                    age:24,
+                    work:"厨师",
+                    hobby:"做甜点"
+                }]
+                // 将数据保存到本地存储
+                // localStorage.setItem("people",JSON.stringify(data));
+                // 获取本地存储中的数据，并将获取到的字符串转为对象
+                let newData=JSON.parse(localStorage.getItem("people"));
+                // 新建字符串
+                let str="";
+                $.each(newData,(index,value)=>{
+                    str+=`
+                        <tr class="active">
+                            <td>${value.name}</td>
+                            <td>${value.sex}</td>
+                            <td>${value.age}</td>
+                            <td>${value.work}</td>
+                            <td>${value.hobby}</td>
+                            <td><button type="button" class="btn btn-danger btn-primary btn-xs">删除</button></td>
+                        </tr>
+                    `
+                })
+                $("tbody").append(str);
+            })
+        </script>
+    </div>
+</body>
+</html>
