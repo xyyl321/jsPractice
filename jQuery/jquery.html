@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+    .box{
+        width:100px;
+        height:100px;
+        background-color:red;
+    }
+    </style>
     <div class="box" id="dd"></div>
     <div class="a">
         <div class="a1">
@@ -19,8 +26,16 @@
     <div class="b"></div>
     <script src="jquery-3.4.1.min.js"></script>
     <script>
-        let result= $(".a>div");
-        console.log(result);
+        $(".box").click(function() {
+    $(this).css({
+      width: function(index, value) {
+        return parseFloat(value) * 1.2;
+      }, 
+      height: function(index, value) {
+        return parseFloat(value) * 1.2;
+      }
+    });
+  });
     </script>
 </body>
 </html>

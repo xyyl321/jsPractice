@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+*{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+#box{
+    width:200px;
+    height:500px;
+    margin:50px auto;
+    position:relative;
+    overflow: hidden;
+}
+/* #box #wrapper{
+    width:100%;
+    height:100%; */
+    /* overflow:hidden; */
+    /* position:relative; */
+/* } */
+#box #wrapper .lie{
+    width:100%;
+    height:100px;
+    background:red;
+    font-size:30px;
+    font-weight:bold;
+    text-align:center;
+    line-height:100px;
+    color:#fff;
+
+}
+#box #wrapper .lie:nth-child(2n+1){
+    background:blue;
+}
+</style>
+<body>
+    <script src="iscroll.js"></script>
+    <div id="box">
+        <div id="wrapper">
+            <div class="lie">1</div>
+            <div class="lie">2</div>
+            <div class="lie">3</div>
+            <div class="lie">4</div>
+            <div class="lie">5</div>
+            <div class="lie">6</div>
+            <div class="lie">7</div>
+            <div class="lie">8</div>
+            <div class="lie">9</div>
+            <div class="lie">10</div>
+        </div>
+
+    </div>
+    <script>
+    let myScroll=new IScroll('#box');
+    
+    </script>
+</body>
+</html>
