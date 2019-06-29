@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="echarts.min.js"></script>
+<body>
+    <style>
+        #main{
+            width:400px;
+            height:400px;
+            margin:100px auto;
+        }
+    
+    </style>
+    <div id="main"></div>
+    <script>
+    //初始化echarts实例
+    let mychart=echarts.init(document.getElementById("main"));
+    
+    // 指定图表的配置项和数据
+    let options={
+        xAxis:{
+            type:"category",
+            data:["星期一","星期二","星期三"]
+        },
+        yAxis:{
+            type:"value"
+        },
+        series:{
+            type:"line",
+            data:[500,30.2,485]
+        }
+
+    }
+
+    // 显示图表
+    mychart.setOption(options);
+    
+    </script>
+</body>
+</html>
