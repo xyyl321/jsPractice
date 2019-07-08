@@ -1,0 +1,11 @@
+.box {
+  width: 500px;
+  height: 500px;
+  margin: 100px auto 0;
+  background: red; }
+  
+  .box .son {
+    width: 100px;
+    height: 40px;
+    background: blue; }
+
