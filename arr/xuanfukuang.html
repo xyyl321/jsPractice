@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background: pink;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .circle {
+        width: 50px;
+        height: 50px;
+        background: rebeccapurple;
+        border-radius: 50%;
+        position: fixed;
+        top: 50px;
+        left: 10px;
+    }
+</style>
+
+<body>
+    <div class="box"></div>
+    <div class="circle"></div>
+</body>
+
+</html>
+
+<script>
+
+    // 原生对象的方式
+    /*
+    let box = document.querySelector(".box");
+    let speedX = 30, speedY = 30;
+    let maxWidth = window.innerWidth - box.offsetWidth;
+    let maxHeight = window.innerHeight - box.offsetHeight;
+    setInterval(() => {
+        let tops = box.offsetTop;
+        let lefts = box.offsetLeft;
+        tops += speedY;
+        lefts += speedX;
+        if (tops < 0 || tops > maxHeight)
+            speedY = -speedY;
+        if (lefts < 0 || lefts > maxWidth)
+            speedX = -speedX;
+        box.style.left = lefts + "px";
+        box.style.top = tops + "px";
+    }, 100)
+*/
+
+    // 基于对象和事件驱动 ，一切皆为对象
+    // 属性：速度，边界，元素，参数   方法：飘动
+    // 属性是可变的，但是方法是不变的（只是有没有，有就调用，没有就不调用）
+    // 属性放在，方法放在原型对象上
+
+    // 1. this:箭头函数  借助that
+    // 2. 构造函数 实例化对象 多个 元素
+    // 3. prototype：原型对象 存放公共的属性与方法，节省内存
+    // 4. class
+
+    // function Float(obj) {
+    //     this.ele = document.querySelector(obj.selector);
+    //     this.maxWidth = window.innerWidth - this.ele.offsetWidth;
+    //     this.maxHeight = window.innerHeight - this.ele.offsetHeight;
+    //     this.speedX = obj.speedX;
+    //     this.speedY = obj.speedY;
+    //     this.times = obj.times;
+    // }
+    // Float.prototype = {
+    //     float: function () {
+    //         setInterval(() => {
+    //             let tops = this.ele.offsetTop;
+    //             let lefts = this.ele.offsetLeft;
+    //             tops += this.speedY;
+    //             lefts += this.speedX;
+    //             if (tops < 0 || tops > this.maxHeight)
+    //                 this.speedY = -this.speedY;
+    //             if (lefts < 0 || lefts > this.maxWidth)
+    //                 this.speedX = -this.speedX;
+    //             this.ele.style.left = lefts + "px";
+    //             this.ele.style.top = tops + "px";
+    //         }, this.times)
+    //     }
+    // }
+    // let obj1 = {
+    //     selector: ".box",
+    //     speedX: 30,
+    //     speedY: 30,
+    //     times: 100
+    // }
+    // let xfk1 = new Float(obj1);
+    // xfk1.float();
+
+    // let obj2 = {
+    //     selector: ".circle",
+    //     speedX: 20,
+    //     speedY: 20,
+    //     times: 100
+    // }
+    // let xfk2 = new Float(obj2);
+    // xfk2.float();
+
+
+    //   // class类
+    // class Float {
+    //     constructor(obj) {
+    //         this.ele = document.querySelector(obj.selector);
+    //         this.maxWidth = window.innerWidth - this.ele.offsetWidth;
+    //         this.maxHeight = window.innerHeight - this.ele.offsetHeight;
+    //         this.speedX = obj.speedX;
+    //         this.speedY = obj.speedY;
+    //         this.times = obj.times;
+    //     }
+    //     float() {
+    //         setInterval(() => {
+    //             let tops = this.ele.offsetTop;
+    //             let lefts = this.ele.offsetLeft;
+    //             tops += this.speedY;
+    //             lefts += this.speedX;
+    //             if (tops < 0 || tops > this.maxHeight)
+    //                 this.speedY = -this.speedY;
+    //             if (lefts < 0 || lefts > this.maxWidth)
+    //                 this.speedX = -this.speedX;
+    //             this.ele.style.left = lefts + "px";
+    //             this.ele.style.top = tops + "px";
+    //         }, this.times)
+    //     }
+    // }
+    // let obj1 = {
+    //     selector: ".box",
+    //     speedX: 30,
+    //     speedY: 30,
+    //     times: 100
+    // }
+    // let xfk1 = new Float(obj1);
+    // xfk1.float();
+
+    // let obj2 = {
+    //     selector: ".circle",
+    //     speedX: 20,
+    //     speedY: 20,
+    //     times: 100
+    // }
+    // let xfk2 = new Float(obj2);
+    // xfk2.float();
+
+
+    // 对象 属性 __proto__
+    // 构造函数 属性 prototype
+    function Person() {
+        this.name = "zs"
+    }
+    function Student() {
+        this.name = "ls"
+    }
+    Student.prototype = new Person();
+    let ww = new Student();
+    console.log(ww.name);
+    console.log(ww.__proto__ == Student.prototype)    // true
+    console.log(Student.prototype.__proto__ == Person.prototype);   // true
+    console.log(Person.prototype.__proto__ == Object.prototype);    // true
+    console.log(Object.prototype.__proto__);   //null
+
+
+
+    // 作业：
+    // 1. dom  对象  
+    //  2. 继承 原型继承
+    // 3. 继承： 原型继承，call,apply ,bind
+    // 3. 轮播图 jQuery，面向对象：构造函数，es6
+
+
+</script>

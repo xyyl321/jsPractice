@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let arr = [4, 4, 5, 68, 7, 51, 2, 0, 40]
+        // 1. push
+        // console.log(arr.push(88, 16))
+        // console.log(arr)
+
+        //2. unshift()
+        // console.log(arr.unshift(14, 66))
+        // console.log(arr)
+
+        //3. pop
+        // console.log(arr.pop())
+        // console.log(arr)
+
+        //4. shift
+        // console.log(arr.shift())
+        // console.log(arr)
+
+        //5. splice  
+        // let b = arr.splice(0, 2, 54, 7, 5, 8, 6)
+        // console.log(b)
+        // console.log(arr)
+
+        //6. join
+        // let b = arr.join()
+        // console.log(b);
+        // console.log(typeof b)
+        // console.log(arr)
+
+        //7. slice
+        // let b = arr.slice(0, 2)
+        // console.log(b);
+        // console.log(arr)
+
+        // 8. concat
+        // let arr2 = [0, 1, 2, 3, 4, 5, 6]
+        // let b = arr.concat(arr2);
+        // console.log(b)
+        // console.log(arr)
+
+        // 9.indexOf
+        // console.log(arr.indexOf(4));
+        // console.log(arr.indexOf(100))
+
+        // 10. lastIndexOf
+        // console.log(arr.lastIndexOf(4))
+
+        // 11. sort
+        // let b = arr.sort()
+        // console.log(b);
+        // let c = arr.sort(function (a, b) {
+        //     return a - b;
+        // })
+        // console.log(c);
+        // let d = arr.sort(function (a, b) {
+        //     return b - a;
+        // })
+        // console.log(d);
+
+        // 12.forEach
+        // let b = arr.forEach((v, i) => {
+        //     console.log(v, i)
+        // })
+
+        // 13.filter
+        // let b = arr.filter((v, i) => {
+        //     return v > 10
+        // })
+        // console.log(b)
+        // console.log(arr)
+
+        // 14. map
+        // let b = arr.map((v, i) => {
+        //     return v * 0.5
+        // })
+        // console.log(b)
+        // console.log(arr)
+
+        // 15.some  16. every
+        // let b = arr.some((v, i) => {
+        //     return v > 10
+        // })
+        // console.log(b)
+        // let c = arr.every((v, i) => {
+        //     return v > 10
+        // })
+        // console.log(c)
+
+        // 17.reverse
+        // let b = arr.reverse();
+        // console.log(b);
+        // console.log(arr)
+
+        // 18.includes
+        // let b = arr.includes(51)
+        // console.log(b)
+        // let c = arr.includes(51, 8)
+        // console.log(c)
+
+        // 19.
+        // console.log(arr)
+
+
+        //函数的默认参数
+
+        // 1. 三元表达式
+        // function fn(num) {
+        //     num = num == undefined ? 1 : num;
+        //     console.log(num);
+        // }
+        // fn()
+
+        //2.分支语句
+        // function fn(num){
+        //     if(num==undefined){
+        //         num=3;
+        //     }else{
+        //         num=num;
+        //     }
+        //     console.log()
+        // }
+
+        // 3. 逻辑或
+        // function fn(num) {
+        //     num = num || 3;
+        //     console.log(num)
+        // }
+        // fn()
+
+        // 4.es6参数默认值
+        // function fn(a, b = 2) {
+        //     console.log(a, b)
+        // }
+        // fn(1)
+
+        // this
+        function foo() {
+            setTimeout(() => {
+                console.log(this)
+            })
+            setTimeout(function () {
+                console.log(this)
+            })
+        }
+        foo()
+
+
+        // 可编辑表格 存本地  增删改查
+        // 用jquery写
+        // 1. 变量 作用域 提问  2. jquery 选择器  提问
+    </script>
+</body>
+
+</html>

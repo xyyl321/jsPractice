@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .box {
+        width: 900px;
+        height: 400px;
+        margin: 20px auto;
+        overflow: hidden;
+        position: relative;
+        background-color: #fbfbfb;
+    }
+
+    .imgBox {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .img {
+        width: 900px;
+        height: 400px;
+        position: absolute;
+        top: 0;
+        left: 900px;
+    }
+
+    .img img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .spotBox {
+        height: 10px;
+        width: 100%;
+        position: absolute;
+        bottom: 20px;
+        text-align: center;
+    }
+
+    .spot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .spot.deep {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .npBox .prev {
+        width: 30px;
+        height: 40px;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -20px;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .npBox .next {
+        width: 30px;
+        height: 40px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -20px;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+<body>
+    <div class="box">
+        <ul class="imgBox">
+            <li class="img">
+                <img src="img/banner1.jpg" alt="">
+            </li>
+            <li class="img">
+                <img src="img/banner2.jpg" alt="">
+            </li>
+            <li class="img">
+                <img src="img/banner3.jpg" alt="">
+            </li>
+        </ul>
+        <ul class="spotBox">
+            <li class="spot"></li>
+            <li class="spot"></li>
+            <li class="spot"></li>
+        </ul>
+        <ul class="npBox">
+            <li class="prev"></li>
+            <li class="next"></li>
+        </ul>
+    </div>
+</body>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script>
+    class Oder {
+        constructor(obj) {
+            this.ele = document.querySelectorAll(obj.ele);
+            this.spot = document.querySelectorAll(obj.spot);
+            this.lrBtn = document.querySelectorAll(obj.lrBtn);
+            this.fele = document.querySelector(obj.fele);
+            this.sty = obj.class;
+            this.pos = obj.pos;
+            this.time = null;
+            this.speed = obj.speed;
+            this.index = 0;
+            this.next = 0;
+            this.flag = true;
+            this.ele[0].style.left = 0;
+            this.spot[0].classList.add(this.sty);
+        }
+        Move() {
+            // if (!this.flag) {
+            //     return
+            // }
+            // this.flag = false;
+            this.next++;
+            if (this.next > this.ele.length - 1) {
+                this.next = 0;
+            }
+            this.ele[this.index].style.left = 0;
+            this.ele[this.next].style.left = this.pos + 'px';
+            this.spot[this.index].classList.add(this.sty);
+            $(this.ele[this.index]).animate({ left: -this.pos + 'px' }, "linear");
+            $(this.ele[this.next]).animate({ left: 0 }, "linear", function () {
+                this.flag = true;
+            });
+            this.index = this.next;
+        }
+        AutoPlay() {
+            this.time = setInterval(() => {
+                this.Move()
+            }, this.speed);
+        }
+        ClickBtn() {
+
+        }
+        ClickSpot() {
+
+        }
+        OverOut() {
+
+        }
+    }
+
+    let obj1 = {
+        ele: ".img",
+        spot: ".spot",
+        lrBtn: ".npBox li",
+        fele: ".box",
+        class: "deep",
+        pos: "900",
+        time: 800,
+        speed: 10,
+    }
+    let a = new Oder(obj1)
+    console.log(a)
+    a.Move()
+    a.AutoPlay()
+
+
+
+    // $(".img").eq(0).css("left", "0")
+    // $(".spot").eq(0).addClass("deep")
+    // let index = 0;
+    // let next = 0;
+    // let time = null;
+    // let flag = true;
+    // function Move() {
+    //     next++
+    //     if (next > $(".img").length - 1) {
+    //         next = 0;
+    //     }
+    //     $(".img").eq(index).css("left", 0).animate({ left: "-900px" }, "linear");
+    //     $(".img").eq(next).css("left", "900px").animate({ left: 0 }, "linear", function () {
+    //         $(".spot").removeClass("deep");
+    //         $(".spot").eq(index).addClass("deep");
+    //         flag = true;
+    //     })
+    //     index = next
+    // }
+    // time = setInterval(Move, 1000);
+    // $(".box").mouseover(function () {
+    //     clearInterval(time);
+    // })
+    // $(".box").mouseout(function () {
+    //     time = setInterval(Move, 1000);
+    // })
+    // $(".npBox li").eq(0).click(function () {
+    //     if (!flag) {
+    //         return
+    //     }
+    //     flag = false;
+    //     next--;
+    //     if (next < 0) {
+    //         next = $(".img").length - 1;
+    //     };
+    //     $(".img").eq(index).css("left", 0).animate({ left: "900px" }, "linear");
+    //     $(".img").eq(next).css("left", "-900px").animate({ left: 0 }, "linear", function () {
+    //         $(".spot").removeClass("deep");
+    //         $(".spot").eq(index).addClass("deep");
+    //         flag = true;
+    //     })
+    //     index = next;
+    // })
+    // $(".npBox li").eq(1).click(function () {
+    //     if (!flag) {
+    //         return
+    //     }
+    //     flag = false;
+    //     Move();
+    // })
+    // $.each($(".spot"), function (i, v) {
+    //     $(v).click(function () {
+    //         next = i
+    //         if (i < index) {
+    //             if (!flag) {
+    //                 return
+    //             }
+    //             flag = false;
+    //             $(".img").eq(index).css("left", 0).animate({ left: "900px" }, "linear");
+    //             $(".img").eq(next).css("left", "-900px").animate({ left: 0 }, "linear", function () {
+    //                 $(".spot").removeClass("deep");
+    //                 $(".spot").eq(index).addClass("deep");
+    //                 flag = true;
+    //             })
+    //             index = next;
+    //         }
+    //         if (i > index) {
+    //             if (!flag) {
+    //                 return
+    //             }
+    //             flag = false;
+    //             $(".img").eq(index).css("left", 0).animate({ left: "-900px" }, "linear");
+    //             $(".img").eq(next).css("left", "900px").animate({ left: 0 }, "linear", function () {
+    //                 $(".spot").removeClass("deep");
+    //                 $(".spot").eq(index).addClass("deep");
+    //                 flag = true;
+    //             })
+    //             index = next;
+    //         }
+    //     })
+    // })
+</script>
+
+</html>
